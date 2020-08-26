@@ -7,12 +7,14 @@ WORKDIR /usr/src/app
 # Install app dependencies by copying
 # package.json and package-lock.json
 COPY package*.json ./
+COPY tsconfig.json ./
+COPY tslint.json ./
+
+# Copy app source
+COPY src ./src
 
 # Install dependencies
 RUN npm install
-
-# Copy app source
-COPY src src
 
 # Bind the port that the image will run on
 EXPOSE 8080
