@@ -15,7 +15,7 @@ COPY e2e ./e2e
 # Install dependencies
 RUN npm install
 # Build ionic for production
-RUN ionic build --prod
+RUN ionic build
 
 # Bind the port that the image will run on
 EXPOSE 8100

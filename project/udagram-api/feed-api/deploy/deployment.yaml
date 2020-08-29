@@ -1,27 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: feed-api
   name: feed-api
+  labels:
+    app: feed-api
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: feed-api
   template:
     metadata:
       labels:
-        service: feed-api
+        app: feed-api
     spec:
       containers:
-      - image: soccertrash/feed-api
-        name: feed-api
-        imagePullPolicy: Always
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "1024Mi"
-            cpu: "500m"
+      - name: feed-api
+        image: soccertrash/feed-api
         ports:
         - containerPort: 8080
-      restartPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: feed-api-config
