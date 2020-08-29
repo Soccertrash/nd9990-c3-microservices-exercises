@@ -18,7 +18,7 @@ script:
   - docker build -t soccertrash/feed-api project/udagram-api/feed-api
   - docker build -t soccertrash/user-api project/udagram-api/user-api
   - docker build -t soccertrash/frontend project/udagram-frontend/
-  - docker build -t soccertrash/ngnix project/nginx/
+  - docker build -t soccertrash/nginx project/nginx/
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
